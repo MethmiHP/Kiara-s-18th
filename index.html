@@ -236,6 +236,7 @@
 
     // RSVP functionality
     let comingCount = localStorage.getItem('kiara-coming') ? parseInt(localStorage.getItem('kiara-coming')) : 0;
+    let hasRsvpd = localStorage.getItem('kiara-rsvpd') === 'true';
     
     const countDisplay = document.getElementById('coming-count');
     const btnComing = document.getElementById('btn-coming');
@@ -243,18 +244,23 @@
 
     countDisplay.textContent = comingCount;
 
-    btnComing.addEventListener('click', function() {
-      comingCount++;
-      localStorage.setItem('kiara-coming', comingCount);
-      countDisplay.textContent = comingCount;
-      
+    // Restore button state on page load
+    if (hasRsvpd) {
       btnComing.textContent = 'Thanks for coming! 🎉';
       btnComing.disabled = true;
-      
-      setTimeout(() => {
-        btnComing.textContent = 'I\'ll Be There 🌸';
-        btnComing.disabled = false;
-      }, 2000);
+    }
+
+    btnComing.addEventListener('click', function() {
+      if (!hasRsvpd) {
+        comingCount++;
+        localStorage.setItem('kiara-coming', comingCount);
+        localStorage.setItem('kiara-rsvpd', 'true');
+        countDisplay.textContent = comingCount;
+        hasRsvpd = true;
+        
+        btnComing.textContent = 'Thanks for coming! 🎉';
+        btnComing.disabled = true;
+      }
     });
 
     const declineMessages = [
@@ -265,6 +271,7 @@
       "You can't say no to cake and dancing! 🎂💃",
       "FOMO is real... reconsider! 😄",
       "Your presence is a present! Please come! 🎁",
+      "Life is short, celebrate with us! ✨",
       "Think about the memories we'll make! 📸",
       "One night, unforgettable vibes! Can't miss it! 🌟"
     ];
@@ -272,6 +279,18 @@
     btnDecline.addEventListener('click', function() {
       const randomMsg = declineMessages[Math.floor(Math.random() * declineMessages.length)];
       alert(randomMsg);
+      
+      // Allow user to RSVP again if they change their mind
+      if (hasRsvpd) {
+        comingCount--;
+        localStorage.setItem('kiara-coming', comingCount);
+        localStorage.setItem('kiara-rsvpd', 'false');
+        countDisplay.textContent = comingCount;
+        hasRsvpd = false;
+        
+        btnComing.textContent = 'I\'ll Be There 🌸';
+        btnComing.disabled = false;
+      }
     });
   </script>
 
