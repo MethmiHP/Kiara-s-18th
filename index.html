@@ -177,11 +177,19 @@
     <h2 class="rsvp-title">RSVP</h2>
     <p class="rsvp-sub">Kindly respond by August 1st</p>
     <p class="rsvp-deadline">Seats are limited · Dinner &amp; cocktails included</p>
-    <div class="btn-group">
-      <a href="mailto:kiara@example.com?subject=RSVP - I'll be there!" class="btn-primary">I'll Be There 🌸</a>
-      <a href="mailto:kiara@example.com?subject=RSVP - So sorry, can't make it" class="btn-secondary">Regretfully Decline</a>
+    
+    <div class="rsvp-counter">
+      <div class="counter-box">
+        <div class="counter-number" id="coming-count">0</div>
+        <div class="counter-label">people coming</div>
+      </div>
     </div>
-    <p class="contact-line">Questions? Reach us at <a href="tel:+94000000000">+94 000 000 000</a> or <a href="mailto:kiara@example.com">kiara@example.com</a></p>
+    
+    <div class="btn-group">
+      <button class="btn-primary" id="btn-coming">I'll Be There 🌸</button>
+      <button class="btn-secondary" id="btn-decline">Regretfully Decline</button>
+    </div>
+    <p class="contact-line">Questions? Reach us at <a href="tel:+94000000000">+94 000 000 000</a></p>
   </section>
 
   <footer>
@@ -225,6 +233,47 @@
       wrapper.appendChild(svg);
       balloonContainer.appendChild(wrapper);
     }
+
+    // RSVP functionality
+    let comingCount = localStorage.getItem('kiara-coming') ? parseInt(localStorage.getItem('kiara-coming')) : 0;
+    
+    const countDisplay = document.getElementById('coming-count');
+    const btnComing = document.getElementById('btn-coming');
+    const btnDecline = document.getElementById('btn-decline');
+
+    countDisplay.textContent = comingCount;
+
+    btnComing.addEventListener('click', function() {
+      comingCount++;
+      localStorage.setItem('kiara-coming', comingCount);
+      countDisplay.textContent = comingCount;
+      
+      btnComing.textContent = 'Thanks for coming! 🎉';
+      btnComing.disabled = true;
+      
+      setTimeout(() => {
+        btnComing.textContent = 'I\'ll Be There 🌸';
+        btnComing.disabled = false;
+      }, 2000);
+    });
+
+    const declineMessages = [
+      "Come ooooon! It's Kiara's 18th! 🎉",
+      "We need you there! The party won't be the same without you! 💕",
+      "Don't miss out! There will be amazing food and fun! 🍰",
+      "Kiara really wants to see you! Pretty please? 🥺",
+      "You can't say no to cake and dancing! 🎂💃",
+      "FOMO is real... reconsider! 😄",
+      "Your presence is a present! Please come! 🎁",
+      "Life is short, celebrate with us! ✨",
+      "Think about the memories we'll make! 📸",
+      "One night, unforgettable vibes! Can't miss it! 🌟"
+    ];
+
+    btnDecline.addEventListener('click', function() {
+      const randomMsg = declineMessages[Math.floor(Math.random() * declineMessages.length)];
+      alert(randomMsg);
+    });
   </script>
 
 </body>

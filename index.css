@@ -400,6 +400,45 @@ section { position: relative; z-index: 1; }
   border-color: rgba(232,130,158,0.6);
 }
 
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.rsvp-counter {
+  display: flex;
+  justify-content: center;
+  margin: 2.5rem 0 3rem;
+}
+
+.counter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff8fb 0%, #ffe8f0 100%);
+  border: 1px solid rgba(232, 130, 158, 0.3);
+  border-radius: 24px;
+  padding: 2rem 3rem;
+  box-shadow: 0 8px 24px rgba(232, 130, 158, 0.15);
+}
+
+.counter-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #d6678a;
+  line-height: 1;
+}
+
+.counter-label {
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+  color: #a0788a;
+  letter-spacing: 0.05em;
+}
+
 .contact-line {
   margin-top: 2.5rem;
   font-size: 13px;
