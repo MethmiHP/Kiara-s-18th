@@ -459,3 +459,85 @@ footer {
   position: relative; z-index: 2;
   background: rgba(255,255,255,0.4);
 }
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 768px) {
+  .rsvp-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .counter-box {
+    padding: 1.8rem 2.2rem;
+    border-radius: 20px;
+  }
+
+  .counter-number {
+    font-size: 2.8rem;
+  }
+
+  .counter-label {
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1.1rem 1.5rem;
+    font-size: 13px;
+    border-radius: 40px;
+  }
+
+  .btn-primary {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .btn-secondary {
+    padding: 1.1rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rsvp-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .counter-box {
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0 2.2rem;
+  }
+
+  .counter-number {
+    font-size: 2.4rem;
+  }
+
+  .counter-label {
+    font-size: 0.85rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 1rem 1.2rem;
+    font-size: 12px;
+    min-width: unset;
+  }
+
+  .btn-group {
+    gap: 0.8rem;
+  }
+
+  .contact-line {
+    font-size: 12px;
+    margin-top: 1.5rem;
+  }
+}
